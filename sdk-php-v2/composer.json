@@ -1,5 +1,5 @@
 {
-    "name" : "3dbp/3dbp-sdk-v2",
+    "name" : "3DBP/3dbp-sdk-v2",
     "description" : "3D Bin Packing SDK",
     "type" : "symfony-bundle",
     "authors" : [{
