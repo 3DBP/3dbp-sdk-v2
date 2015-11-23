@@ -1,0 +1,29 @@
+{
+    "name" : "3dbp/3dbp-sdk-v2",
+    "description" : "3D Bin Packing SDK",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "3Dbinpacking.com",
+        "email" : "contact@3dbinpacking.com"
+    }],
+    "keywords" : [
+        "3D Bin Packing"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-4" : {
+            "ThreeDBinPacking\\" : "src/"
+        }
+    },
+    "repositories" : [{
+    }],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "1.0-dev"
+        }
+    }
+}
