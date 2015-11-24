@@ -1,24 +1,25 @@
 <?php
 
-namespace ThreeDBinPacking\Model;
+namespace ThreeDBinPacking\Model\Request;
 
 //<editor-fold defaultstate="collapsed" desc="Use block.">
 /**
- * Description of Item
+ * Description of Bin
  *
  * @author Albert Rybacki <rybacki.albert@gmail.com>
  */
 // </editor-fold>
 
-class Item
+class Bin
 {
+    static $lastRandomId = 0;
+    
     protected $id;
     protected $name;
     protected $width;
     protected $height;
     protected $depth;
-    protected $weight;
-    protected $quantity = 0;
+    protected $maxWeight;
     
     public function getId() {
         return $this->id;
@@ -40,12 +41,8 @@ class Item
         return $this->depth;
     }
 
-    public function getWeight() {
-        return $this->weight;
-    }
-
-    public function getQuantity() {
-        return $this->quantity;
+    public function getMaxWeight() {
+        return $this->maxWeight;
     }
 
     public function setId($id) {
@@ -73,13 +70,19 @@ class Item
         return $this;
     }
 
-    public function setWeight($weight) {
-        $this->weight = $weight;
+    public function setMaxWeight($weight) {
+        $this->maxWeight = $weight;
         return $this;
     }
 
-    public function setQuantity($quantity) {
-        $this->quantity = $quantity;
-        return $this;
+    public function getAsArray(){
+        $data = [];
+        $data['id'] = $this->id?$this->id:self::$lastRandomId++;
+        $data['w'] = $this->width;
+        $data['h'] = $this->height;
+        $data['d'] = $this->depth;
+        $data['max_wg'] = $this->maxWeight;
+        return $data;
     }
+
 }

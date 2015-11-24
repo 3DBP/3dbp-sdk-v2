@@ -1,25 +1,29 @@
 <?php
 
-namespace ThreeDBinPacking\Model;
+namespace ThreeDBinPacking\Model\Request;
 
 //<editor-fold defaultstate="collapsed" desc="Use block.">
 /**
- * Description of Bin
+ * Description of Item
  *
  * @author Albert Rybacki <rybacki.albert@gmail.com>
  */
 // </editor-fold>
 
-class Bin
+class Item
 {
-    protected $id;
-    protected $name;
-    protected $width;
-    protected $height;
-    protected $depth;
-    protected $weight;
-    protected $quantity = 0;
+    static $lastRandomId = 0;
     
+    protected $id;
+    protected $name     = 0;
+    protected $width    = 0;
+    protected $height   = 0;
+    protected $depth    = 0;
+    protected $weight   = 0;
+    protected $quantity = 0;
+    protected $verticalRotation = true;
+
+
     public function getId() {
         return $this->id;
     }
@@ -46,6 +50,10 @@ class Bin
 
     public function getQuantity() {
         return $this->quantity;
+    }
+    
+    public function getVerticalRotation() {
+        return $this->verticalRotation;
     }
 
     public function setId($id) {
@@ -82,5 +90,21 @@ class Bin
         $this->quantity = $quantity;
         return $this;
     }
+    
+    public function setVerticalRotation($vertical_rotation) {
+        $this->verticalRotation = $vertical_rotation;
+        return $this;
+    }
 
+    public function getAsArray(){
+        $data = [];
+        $data['id'] = $this->id?$this->id:self::$lastRandomId++;
+        $data['w']  = $this->width;
+        $data['h']  = $this->height;
+        $data['d']  = $this->depth;
+        $data['wg'] = $this->weight;
+        $data['q']  = $this->quantity;
+        $data['vr'] = $this->verticalRotation;
+        return $data;
+    }
 }
