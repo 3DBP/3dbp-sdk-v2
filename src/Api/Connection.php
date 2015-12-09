@@ -33,7 +33,8 @@ class Connection
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER  , true);
         $resp = curl_exec($ch);
-        $this->response->setRawResponse($resp);
+        $header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+        $this->response->setRawResponse(substr($resp, $header_size));
         $this->response->setResponseCode(curl_getinfo($ch, CURLINFO_HTTP_CODE));
         curl_close($ch);
     }

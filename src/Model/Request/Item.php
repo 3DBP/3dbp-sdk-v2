@@ -22,7 +22,10 @@ class Item
     protected $weight   = 0;
     protected $quantity = 0;
     protected $verticalRotation = true;
-
+    protected $fillColor = null;
+    protected $borderColor = null;
+    protected $backBorderColor = null;
+    protected $colorsSchemeSource = 'default'; // default|random|item
 
     public function getId() {
         return $this->id;

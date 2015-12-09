@@ -12,12 +12,17 @@ namespace ThreeDBinPacking\Model\Response;
 
 class PackingResult
 {
+    protected $id;
     protected $packedBins;
     protected $errors = [];
     protected $status;
     protected $stats;
     protected $isResponseValid;
 
+    public function getId() {
+        return $this->id;
+    }
+    
     public function getPackedBins() {
         return $this->packedBins;
     }
@@ -36,6 +41,11 @@ class PackingResult
     
     public function isResponseValid() {
         return $this->isResponseValid;
+    }
+    
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
     }
 
     public function setPackedBins($packedBins) {
