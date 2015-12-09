@@ -1,5 +1,6 @@
 {
     "name" : "3dbp/3dbp-sdk-v2",
+    "version": "0.5",
     "description" : "3D Bin Packing SDK",
     "type" : "symfony-bundle",
     "authors" : [{
@@ -21,7 +22,7 @@
     },
     "extra" : {
     "branch-alias" : {
-            "dev-master" : "1.0-dev"
+            "dev-master" : "0.5"
         }
     }
 }
