@@ -3,8 +3,8 @@
 namespace ThreeDBinPacking\Model\Response;
 
 //<editor-fold defaultstate="collapsed" desc="Use block.">
-use ThreeDBinPacking\Model\Request\Bin as RequestBin;
 use ThreeDBinPacking\Model\Response\Item as PackedItem;
+use ThreeDBinPacking\Model\Common\Bin as CommonBin;
 /**
  * Description of Bin
  *
@@ -12,10 +12,11 @@ use ThreeDBinPacking\Model\Response\Item as PackedItem;
  */
 // </editor-fold>
 
-class Bin extends RequestBin
+class Bin extends CommonBin
 {
     
-    protected $packedItems = [];
+    protected $packedItems;
+    protected $notPackedItems = [];
     protected $completeImage;
     protected $usedSpace;
     protected $weight;
@@ -54,12 +55,20 @@ class Bin extends RequestBin
     public function getImagesGenerationTime() {
         return $this->imagesGenerationTime;
     }
-
+    
+    public function getNotPackedItems() {
+        return $this->notPackedItems;
+    }
+    
     public function addPackedItem(PackedItem $packedItem) {
         $this->packedItems->addPackedItem($packedItem);
         return $this;
     }
     
+    public function addNotPackedItems($items){
+        $this->notPackedItems[] = $items;
+    }
+
     public function setPackedItems(array $packedItems) {
         $this->packedItems = $packedItems;
         return $this;

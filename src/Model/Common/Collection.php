@@ -138,7 +138,7 @@ class Collection implements \Iterator
     }
 
     public function rewind() {
-        rewind($this->elements);
+        reset($this->elements);
     }
 
     public function valid() {

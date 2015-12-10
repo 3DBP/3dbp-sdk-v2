@@ -47,6 +47,7 @@ class ParametersContainer
         foreach($parameters as $name=>$value){
             $this->setParameter($name, $value);
         }
+        return $this;
     }
     
     public function setParameter($name, $value){
@@ -64,6 +65,7 @@ class ParametersContainer
 
         $parameterObject = new $parameterClass($value);
         $this->$method($parameterObject);
+        return $this;
 
     }
     
@@ -85,6 +87,7 @@ class ParametersContainer
      */
     public function setImagesBackgroundColor(ParameterColor $color){
         $this->parameters[self::PARAM_IMAGES_BACKGROUND_COLOR] = $color->getAsString();
+        return $this;
     }
     
     /**
@@ -93,6 +96,7 @@ class ParametersContainer
      */
     public function setImagesBinBorderColor(ParameterColor $color){
         $this->parameters[self::PARAM_IMAGES_BIN_BORDER_COLOR] = $color->getAsString();
+        return $this;
     }
     
     /**
@@ -101,6 +105,7 @@ class ParametersContainer
      */
     public function setImagesBinFillColor(ParameterColor $color){
         $this->parameters[self::PARAM_IMAGES_BIN_FILL_COLOR] = $color->getAsString();
+        return $this;
     }
     
     /**
@@ -109,6 +114,7 @@ class ParametersContainer
      */
     public function setImagesBinDashedLineColor(ParameterColor $color){
         $this->parameters[self::PARAM_IMAGES_BIN_DASHED_LINE_COLOR] = $color->getAsString();
+        return $this;
     }
     
     /**
@@ -117,6 +123,7 @@ class ParametersContainer
      */
     public function setImagesItemBorderColor(ParameterColor $color){
         $this->parameters[self::PARAM_IMAGES_ITEM_BORDER_COLOR] = $color->getAsString();
+        return $this;
     }
     
     /**
@@ -125,6 +132,7 @@ class ParametersContainer
      */
     public function setImagesItemFillColor(ParameterColor $color){
         $this->parameters[self::PARAM_IMAGES_ITEM_FILL_COLOR] = $color->getAsString();
+        return $this;
     }
     
     /**
@@ -133,6 +141,7 @@ class ParametersContainer
      */
     public function setImagesItemBackBorderColor(ParameterColor $color){
         $this->parameters[self::PARAM_IMAGES_ITEM_BACK_BORDER_COLOR] = $color->getAsString();
+        return $this;
     }
     
     /**
@@ -141,6 +150,7 @@ class ParametersContainer
      */
     public function setImagesSbsLastItemFillColor(ParameterColor $color){
         $this->parameters[self::PARAM_IMAGES_SBS_LAST_ITEM_FILL_COLOR] = $color->getAsString();
+        return $this;
     }
     
     /**
@@ -149,6 +159,7 @@ class ParametersContainer
      */
     public function setImagesWidth(ParameterImageSize $imageSize){
         $this->parameters[self::PARAM_IMAGES_WIDTH] = $imageSize->getSize();
+        return $this;
     }
     
     /**
@@ -157,6 +168,7 @@ class ParametersContainer
      */
     public function setImagesHeight(ParameterImageSize $imageSize){
         $this->parameters[self::PARAM_IMAGES_HEIGHT] = $imageSize->getSize();
+        return $this;
     }
     
     /**
@@ -165,6 +177,7 @@ class ParametersContainer
      */
     public function setImagesSource(ParameterImageSource $source){
         $this->parameters[self::PARAM_IMAGES_SOURCE] = $source->getSource();
+        return $this;
     }
     
     /**
@@ -173,6 +186,7 @@ class ParametersContainer
      */
     public function setImagesSbs(ParameterBoolean $bool){
         $this->parameters[self::PARAM_IMAGES_SBS] = $bool->getValue();
+        return $this;
     }
     
     /**
@@ -181,6 +195,7 @@ class ParametersContainer
      */
     public function setImagesComplete(ParameterBoolean $bool){
         $this->parameters[self::PARAM_IMAGES_COMPLETE] = $bool->getValue();
+        return $this;
     }
     
     /**
@@ -189,6 +204,7 @@ class ParametersContainer
      */
     public function setImagesSeparated(ParameterBoolean $bool){
         $this->parameters[self::PARAM_IMAGES_SEPARATED] = $bool->getValue();
+        return $this;
     }
     
     /**
@@ -197,6 +213,7 @@ class ParametersContainer
      */
     public function setImagesFormat(ParameterImageFormat $format){
         $this->parameters[self::PARAM_IMAGES_FORMAT] = $format->getFormat();
+        return $this;
     }
     
     /**
@@ -205,6 +222,7 @@ class ParametersContainer
      */
     public function setStats(ParameterBoolean $bool){
         $this->parameters[self::PARAM_STATS] = $bool->getValue();
+        return $this;
     }
     
     /**
@@ -213,6 +231,7 @@ class ParametersContainer
      */
     public function setItemCoordinates(ParameterBoolean $bool){
         $this->parameters[self::PARAM_ITEM_COORDINATES] = $bool->getValue();
+        return $this;
     }
     
     public function getAsArray(){

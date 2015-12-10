@@ -9,7 +9,6 @@ use ThreeDBinPacking\Model\Response\PackingResult;
 use ThreeDBinPacking\Model\Response\Bin as PackedBin;
 use ThreeDBinPacking\Model\Response\Item as PackedItem;
 use ThreeDBinPacking\Model\Response\PackedBins;
-use ThreeDBinPacking\Model\Response\PackedItems;
 
 /**
  * Description of ResponseMapper
@@ -31,17 +30,18 @@ class PackingResponseMapper
 
     public function map(Response $responseData, RequestData $requestData){
         $this->packingResult = new PackingResult();
-        $this->packingResult->setStatus($responseData->getResponseCode());
+        $this->packingResult->setResponseCode($responseData->getResponseCode());
         if($responseData->getResponseCode() !== 200){
             $this->packingResult->setIsResponseValid(false);
         }else{
             $this->packingResult->setIsResponseValid(true);
             $this->responseData = json_decode($responseData->getRawResponse(), true);
-            p($this->responseData);
             $this->mapStatus();
+            $this->mapResponseTime();
             $this->mapErrors();
             $this->mapId();
             $this->mapBins();
+            $this->mapUnpackedItem();
         }
         return $this->packingResult;
     }
@@ -49,6 +49,12 @@ class PackingResponseMapper
     protected function mapId(){
         if(isset($this->responseData['response']['id'])){
             $this->packingResult->setId($this->responseData['response']['id']);
+        }
+    }
+    
+    protected function mapResponseTime(){
+        if(isset($this->responseData['response']['response_time'])){
+            $this->packingResult->setResponseTime($this->responseData['response']['response_time']);
         }
     }
 
@@ -83,6 +89,11 @@ class PackingResponseMapper
                 if(isset($packedBinArray['items'])){
                     $this->mapPackedItems($packedBin, $packedBinArray['items']);
                 }
+                if(isset($packedBinArray['not_packed_items']) && is_array($packedBinArray['not_packed_items'])){
+                    foreach($packedBinArray['not_packed_items'] as $notPackedItems){
+                        $packedBin->addNotPackedItems($notPackedItems);
+                    }
+                }
                 $packedBins->addPackedBin($packedBin);
             }
         }
@@ -91,24 +102,36 @@ class PackingResponseMapper
     protected function mapPackedItems(PackedBin $packedBin, array $items){
         foreach($items as $item){
             $packedItem = new PackedItem();
-            $packedItem->setDepth($item['d']);
-            $packedItem->setHeight($item['h']);
-            $packedItem->setWidth($item['w']);
-            $packedItem->setId($item['id']);
-//            $packedItem->setName($name);
-            $packedItem->setWeight($item['wg']);
-            
+            $packedItem->setDepth(  $item['d']);
+            $packedItem->setHeight( $item['h']);
+            $packedItem->setWidth(  $item['w']);
+            $packedItem->setId(     $item['id']);
+            $packedItem->setWeight( $item['wg']);
+            if(isset($item['coordinates'])){
+                $packedItem->setCoordinates($item['coordinates']);
+            }
+            if(isset($item['image_separated'])){
+                $packedItem->setSeparatedImage($item['image_separated']);
+            }
+            if(isset($item['image_sbs'])){
+                $packedItem->setSbsImage($item['image_sbs']);
+            }
             $packedBin->addPackedItem($packedItem);
         }
     }
     
     protected function mapUnpackedItem(){
-        
+        if(isset($this->responseData['response']['not_packed_items']) && is_array($this->responseData['response']['not_packed_items'])){
+            $notPackedItems = [];
+            foreach($this->responseData['response']['not_packed_items'] as $notPackedItems){
+                $this->packingResult->addNotPackedItems($notPackedItems);
+            }          
+        }
     }
     
     protected function mapErrors(){
         if(isset($this->responseData['response']['errors'])){
-            $this->packingResult->setStatus($this->responseData['response']['errors']);
+            $this->packingResult->setErrors($this->responseData['response']['errors']);
         }
     }
     

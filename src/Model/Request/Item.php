@@ -3,6 +3,7 @@
 namespace ThreeDBinPacking\Model\Request;
 
 //<editor-fold defaultstate="collapsed" desc="Use block.">
+use ThreeDBinPacking\Model\Common\Item as CommonItem;
 /**
  * Description of Item
  *
@@ -10,42 +11,17 @@ namespace ThreeDBinPacking\Model\Request;
  */
 // </editor-fold>
 
-class Item
+class Item extends CommonItem
 {
-    static $lastRandomId = 0;
+    const ITEM_COLOR_SCHEMA_SOURCE_DEFAUL = 'default';
+    const ITEM_COLOR_SCHEMA_SOURCE_RANDOM = 'random';
+    const ITEM_COLOR_SCHEMA_SOURCE_ITEM = 'item';
     
-    protected $id;
-    protected $name     = 0;
-    protected $width    = 0;
-    protected $height   = 0;
-    protected $depth    = 0;
-    protected $weight   = 0;
     protected $quantity = 0;
-    protected $verticalRotation = true;
     protected $fillColor = null;
     protected $borderColor = null;
     protected $backBorderColor = null;
     protected $colorsSchemeSource = 'default'; // default|random|item
-
-    public function getId() {
-        return $this->id;
-    }
-    
-    public function getName() {
-        return $this->name;
-    }
-
-    public function getWidth() {
-        return $this->width;
-    }
-
-    public function getHeight() {
-        return $this->height;
-    }
-
-    public function getDepth() {
-        return $this->depth;
-    }
 
     public function getWeight() {
         return $this->weight;
@@ -54,48 +30,9 @@ class Item
     public function getQuantity() {
         return $this->quantity;
     }
-    
-    public function getVerticalRotation() {
-        return $this->verticalRotation;
-    }
-
-    public function setId($id) {
-        $this->id = $id;
-        return $this;
-    }
-
-    public function setName($name) {
-        $this->name = $name;
-        return $this;
-    }
-
-    public function setWidth($width) {
-        $this->width = $width;
-        return $this;
-    }
-
-    public function setHeight($height) {
-        $this->height = $height;
-        return $this;
-    }
-
-    public function setDepth($depth) {
-        $this->depth = $depth;
-        return $this;
-    }
-
-    public function setWeight($weight) {
-        $this->weight = $weight;
-        return $this;
-    }
 
     public function setQuantity($quantity) {
         $this->quantity = $quantity;
-        return $this;
-    }
-    
-    public function setVerticalRotation($vertical_rotation) {
-        $this->verticalRotation = $vertical_rotation;
         return $this;
     }
 

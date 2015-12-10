@@ -16,8 +16,10 @@ class PackingResult
     protected $packedBins;
     protected $errors = [];
     protected $status;
-    protected $stats;
+    protected $responseCode;
+    protected $responseTime;
     protected $isResponseValid;
+    protected $notPackedItems = [];
 
     public function getId() {
         return $this->id;
@@ -34,11 +36,23 @@ class PackingResult
     public function getStatus() {
         return $this->status;
     }
-
-    public function getStats() {
-        return $this->stats;
+    
+    public function getResponseTime() {
+        return $this->responseTime;
     }
     
+    public function getResponseCode() {
+        return $this->responseCode;
+    }
+    
+    public function getNotPackedItems() {
+        return $this->notPackedItems;
+    }
+    
+    public function addNotPackedItems($items){
+        $this->notPackedItems[] = $items;
+    }
+
     public function isResponseValid() {
         return $this->isResponseValid;
     }
@@ -63,16 +77,17 @@ class PackingResult
         return $this;
     }
 
-    public function setStats($stats) {
-        $this->stats = $stats;
-        return $this;
-    }
-
     public function setIsResponseValid($isResponseValid) {
         $this->isResponseValid = $isResponseValid;
         return $this;
     }
 
-
+    public function setResponseTime($responseTime) {
+        $this->responseTime = $responseTime;
+    }
+    
+    public function setResponseCode($responseCode) {
+        $this->responseCode = $responseCode;
+    }
     
 }

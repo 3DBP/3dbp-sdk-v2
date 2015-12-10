@@ -7,6 +7,8 @@ use ThreeDBinPacking\Model\Request\RequestData;
 use ThreeDBinPacking\Model\Request\Bin;
 use ThreeDBinPacking\Model\Request\Item;
 use ThreeDBinPacking\Mapper\PackingResponseMapper;
+use ThreeDBinPacking\Model\Request\ParameterBoolean;
+use ThreeDBinPacking\Model\Request\ParameterImageSize;
 /**
  * Description of AbstractPackingService
  *
@@ -49,7 +51,44 @@ abstract class AbstractPackingService
                 ->getItemsCollection()
                 ->addItem($item);
     }
+    
+    public function enableGetCoordinates(){
+        $this->requestData
+                ->getParameters()
+                ->setItemCoordinates(new ParameterBoolean(true));
+    }
+    
+    public function enableGetSbSImages(){
+        $this->requestData
+                ->getParameters()
+                ->setImagesSbs(new ParameterBoolean(true));
+    }
+    
+    public function enableGetCompleteImages(){
+        $this->requestData
+                ->getParameters()
+                ->setImagesComplete(new ParameterBoolean(true));
+    }
 
+    public function enableGetSeparatedImages(){
+        $this->requestData
+                ->getParameters()
+                ->setImagesSeparated(new ParameterBoolean(true));
+    }
+    
+    public function enableGetStatistics(){
+        $this->requestData
+                ->getParameters()
+                ->setStats(new ParameterBoolean(true));
+    }
+    
+    public function setImagesSizes($width, $height){
+        $this->requestData
+                ->getParameters()
+                ->setImagesHeight(new ParameterImageSize($height))
+                ->setImagesWidth(new ParameterImageSize($width));
+    }
+    
     public function execute($location){
         $algorithmName = $this->getAlgorithmName();
         $client = new \ThreeDBinPacking\Api\Client($location, $algorithmName);

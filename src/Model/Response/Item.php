@@ -3,7 +3,7 @@
 namespace ThreeDBinPacking\Model\Response;
 
 //<editor-fold defaultstate="collapsed" desc="Use block.">
-use ThreeDBinPacking\Model\Request\Item as RequestItem;
+use ThreeDBinPacking\Model\Common\Item as CommonItem;
 /**
  * Description of Item
  *
@@ -11,7 +11,7 @@ use ThreeDBinPacking\Model\Request\Item as RequestItem;
  */
 // </editor-fold>
 
-class Item extends RequestItem
+class Item extends CommonItem
 {
     protected $coordinates;
     protected $sbsImage;
