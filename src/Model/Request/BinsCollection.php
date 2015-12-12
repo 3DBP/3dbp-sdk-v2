@@ -33,7 +33,12 @@ class BinsCollection
     public function setFromArray(array $data){
         foreach($data as $bin){
             if(is_array($bin)){
-                $binObj = new Bin();
+                if(key_exists('find', $bin)){
+                    $binObj = new BinFindThirdDim();
+                    $binObj->setFind($bin['find']);
+                }else{
+                    $binObj = new Bin();
+                }
                 if(isset($bin['width'])){
                     $binObj->setWidth($bin['width']);  
                 }

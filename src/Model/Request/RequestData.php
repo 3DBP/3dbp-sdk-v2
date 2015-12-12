@@ -40,7 +40,7 @@ class RequestData
     public function __construct($apiUsername, $apiKey, array $params = null) {
         $this->binsCollection = new BinsCollection();
         $this->itemsCollection = new ItemsCollection();
-        $this->parameters = new ParametersContainer();
+        $this->parameters = new Parameters();
         $this->apiKey = $apiKey;
         $this->apiUser = $apiUsername;
         if($params){
@@ -66,7 +66,7 @@ class RequestData
 
     /**
      * 
-     * @return \ThreeDBinPacking\Model\Request\ParametersContainer
+     * @return \ThreeDBinPacking\Model\Request\Parameters
      */
     public function getParameters() {
         return $this->parameters;
@@ -83,7 +83,7 @@ class RequestData
         return $this;
     }
 
-    public function setParameters(ParametersContainer $parameters) {
+    public function setParameters(Parameters $parameters) {
         $this->parameters = $parameters;
         return $this;
     }

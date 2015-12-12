@@ -9,6 +9,7 @@ use ThreeDBinPacking\Model\Request\Item;
 use ThreeDBinPacking\Mapper\PackingResponseMapper;
 use ThreeDBinPacking\Model\Request\ParameterBoolean;
 use ThreeDBinPacking\Model\Request\ParameterImageSize;
+use ThreeDBinPacking\Model\Common\Color;
 /**
  * Description of AbstractPackingService
  *
@@ -87,6 +88,12 @@ abstract class AbstractPackingService
                 ->getParameters()
                 ->setImagesHeight(new ParameterImageSize($height))
                 ->setImagesWidth(new ParameterImageSize($width));
+    }
+    
+    public function setColor($part, Color $color){
+        $this->requestData
+                ->getParameters()
+                ->setParameter($part, $color->getAsArray());
     }
     
     public function execute($location){
