@@ -26,6 +26,11 @@ class ItemsCollection
         return $this->items;
     }
     
+    public function setItems($items) {
+        $this->items = $items;
+        return $this;
+    }
+    
     public function getAsArray(){
         $data = [];
         foreach($this->items as $bin){
