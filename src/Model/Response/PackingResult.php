@@ -20,6 +20,7 @@ class PackingResult
     protected $responseTime;
     protected $isResponseValid;
     protected $notPackedItems = [];
+    protected $responseUrl = null;
 
     public function getId() {
         return $this->id;
@@ -90,4 +91,13 @@ class PackingResult
         $this->responseCode = $responseCode;
     }
     
+    public function getResponseUrl() {
+        return $this->responseUrl;
+    }
+
+    public function setResponseUrl($responseUrl) {
+        $this->responseUrl = $responseUrl;
+        return $this;
+    }
+
 }

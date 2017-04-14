@@ -32,6 +32,7 @@ class Parameters
     const PARAM_IMAGES_FORMAT                     = "images_format";
     const PARAM_STATS                             = "stats";
     const PARAM_ITEM_COORDINATES                  = "item_coordinates";
+    const PARAM_SAVE_RESPONSE                     = "save_response";
     
     protected $parameters = [];
     protected static $parametersList;
@@ -231,6 +232,15 @@ class Parameters
      */
     public function setStats(ParameterBoolean $bool){
         $this->parameters[self::PARAM_STATS] = $bool->getValue();
+        return $this;
+    }
+    
+    /**
+     * 
+     * @param bool $bool
+     */
+    public function setSaveResponse(ParameterBoolean $bool){
+        $this->parameters[self::PARAM_SAVE_RESPONSE] = $bool->getValue();
         return $this;
     }
     

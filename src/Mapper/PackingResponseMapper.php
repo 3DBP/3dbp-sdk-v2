@@ -38,6 +38,7 @@ class PackingResponseMapper
             $this->responseData = json_decode($responseData->getRawResponse(), true);
             $this->mapStatus();
             $this->mapResponseTime();
+            $this->mapResponseUrl();
             $this->mapErrors();
             $this->mapId();
             $this->mapBins();
@@ -55,6 +56,12 @@ class PackingResponseMapper
     protected function mapResponseTime(){
         if(isset($this->responseData['response']['response_time'])){
             $this->packingResult->setResponseTime($this->responseData['response']['response_time']);
+        }
+    }
+    
+    protected function mapResponseUrl(){
+        if(isset($this->responseData['response']['response_url'])){
+            $this->packingResult->setResponseUrl($this->responseData['response']['response_url']);
         }
     }
 

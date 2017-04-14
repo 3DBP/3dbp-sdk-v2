@@ -96,6 +96,12 @@ abstract class AbstractPackingService
                 ->setParameter($part, $color->getAsArray());
     }
     
+    public function enableSaveResponse(){
+        $this->requestData
+                ->getParameters()
+                ->setSaveResponse(new ParameterBoolean(true));
+    }
+    
     public function execute($location){
         $algorithmName = $this->getAlgorithmName();
         $client = new \ThreeDBinPacking\Api\Client($location, $algorithmName);
