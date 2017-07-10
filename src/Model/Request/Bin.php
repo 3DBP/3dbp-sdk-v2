@@ -15,13 +15,24 @@ class Bin extends CommonBin
 {
     
     protected $maxWeight;
-    
+    protected $quantity = null;
+
+
     public function getMaxWeight() {
         return $this->maxWeight;
     }
 
     public function setMaxWeight($weight) {
-        $this->maxWeight = $weight;
+        $this->maxWeight = (float)$weight;
+        return $this;
+    }
+    
+    public function getQuantity() {
+        return $this->quantity;
+    }
+
+    public function setQuantity($quantity) {
+        $this->quantity = (int)$quantity;
         return $this;
     }
 
@@ -31,6 +42,7 @@ class Bin extends CommonBin
         $data['w'] = $this->width;
         $data['h'] = $this->height;
         $data['d'] = $this->depth;
+        $data['q'] = $this->quantity;
         $data['max_wg'] = $this->maxWeight;
         return $data;
     }
