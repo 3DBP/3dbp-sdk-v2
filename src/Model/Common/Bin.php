@@ -51,17 +51,17 @@ class Bin
     }
 
     public function setWidth($width) {
-        $this->width = $width;
+        $this->width = (float)$width;
         return $this;
     }
 
     public function setHeight($height) {
-        $this->height = $height;
+        $this->height = (float)$height;
         return $this;
     }
 
     public function setDepth($depth) {
-        $this->depth = $depth;
+        $this->depth = (float)$depth;
         return $this;
     }
 
