@@ -57,6 +57,9 @@ class BinsCollection
                 if(isset($bin['name'])){
                     $binObj->setName($bin['name']);
                 }
+                if(isset($bin['quantity'])){
+                    $binObj->setQuantity($bin['quantity']);
+                }
                 $this->addBin($binObj);
             }
         }
