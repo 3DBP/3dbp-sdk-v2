@@ -27,8 +27,14 @@ class PackingResponseMapper
      * @var PackingResult
      */
     protected $packingResult;
+    /**
+     *
+     * @var RequestData
+     */
+    protected $requestData;
 
     public function map(Response $responseData, RequestData $requestData){
+        $this->requestData = $requestData;
         $this->packingResult = new PackingResult();
         $this->packingResult->setResponseCode($responseData->getResponseCode());
         if($responseData->getResponseCode() !== 200){
@@ -74,8 +80,11 @@ class PackingResponseMapper
     protected function mapBins(){
         $packedBins = new PackedBins();
         $this->packingResult->setPackedBins($packedBins);
+        $binsCollection = $this->requestData->getBinsCollection();
         if(isset($this->responseData['response']['bins_packed'])){
             foreach($this->responseData['response']['bins_packed'] as $packedBinArray){
+                $requestBin = $binsCollection->getById($packedBinArray['bin_data']['id']);
+
                 $packedBin = new PackedBin();
                 $packedBin->setWidth($packedBinArray['bin_data']['w']);
                 $packedBin->setHeight($packedBinArray['bin_data']['h']);
@@ -84,6 +93,12 @@ class PackingResponseMapper
                 $packedBin->setId($packedBinArray['bin_data']['id']);
                 $packedBin->setUsedSpace($packedBinArray['bin_data']['used_space']);
                 $packedBin->setUsedWeight($packedBinArray['bin_data']['used_weight']);
+                if($requestBin){
+                    $packedBin->setGrossWeight($packedBin->getWeight()+$requestBin->getWeight());
+                }else{
+                    $packedBin->setGrossWeight(0);
+                }
+                
                 if(isset($packedBinArray['image_complete'])){
                     $packedBin->setCompleteImage($packedBinArray['image_complete']);
                 }

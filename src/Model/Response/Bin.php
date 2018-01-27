@@ -23,6 +23,7 @@ class Bin extends CommonBin
     protected $usedWeight;
     protected $packingTime;
     protected $imagesGenerationTime;
+    protected $grossWeight;
     
     public function __construct() {
         $this->packedItems = new PackedItems();
@@ -102,6 +103,14 @@ class Bin extends CommonBin
     public function setImagesGenerationTime($imagesGenerationTime) {
         $this->imagesGenerationTime = $imagesGenerationTime;
         return $this;
+    }
+    
+    public function getGrossWeight() {
+        return $this->grossWeight;
+    }
+
+    public function setGrossWeight($grossWeight) {
+        $this->grossWeight = $grossWeight;
     }
     
 }

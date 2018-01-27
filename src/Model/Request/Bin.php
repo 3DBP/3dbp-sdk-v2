@@ -15,6 +15,7 @@ class Bin extends CommonBin
 {
     
     protected $maxWeight;
+    protected $weight = 0;
     protected $quantity = null;
 
 
@@ -27,6 +28,15 @@ class Bin extends CommonBin
         return $this;
     }
     
+    public function getWeight() {
+        return $this->weight;
+    }
+
+    public function setWeight($weight) {
+        $this->weight = $weight;
+    }
+
+        
     public function getQuantity() {
         return $this->quantity;
     }
@@ -44,6 +54,7 @@ class Bin extends CommonBin
         $data['d'] = $this->depth;
         $data['q'] = $this->quantity; 
         $data['max_wg'] = $this->maxWeight;
+        $data['weight'] = $this->weight;
         return $data;
     }
 

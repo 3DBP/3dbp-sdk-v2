@@ -33,6 +33,7 @@ class RequestData
      * @var \ThreeDBinPacking\Model\Request\ParametersContainer
      */
     protected $parameters;
+    protected $shippingFactor;
     
     protected $apiUser;
     protected $apiKey;
@@ -97,4 +98,13 @@ class RequestData
         $data[self::PARAMETER_PARAMS]       = $this->parameters->getAsArray();
         return $data;
     }
+    
+    public function getShippingFactor() {
+        return $this->shippingFactor;
+    }
+
+    public function setShippingFactor($shippingFactor) {
+        $this->shippingFactor = $shippingFactor;
+    }
+
 }
