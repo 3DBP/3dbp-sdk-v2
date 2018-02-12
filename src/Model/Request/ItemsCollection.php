@@ -58,6 +58,9 @@ class ItemsCollection
                 if(isset($item['quantity'])){
                     $itemObj->setQuantity($item['quantity']);
                 }
+                if(isset($item['limit_per_container'])){
+                    $itemObj->setLimitPerContainer($item['limit_per_container']);
+                }
                 if(isset($item['vertical_rotation'])){
                     $itemObj->setVerticalRotation($item['vertical_rotation']);
                 }
