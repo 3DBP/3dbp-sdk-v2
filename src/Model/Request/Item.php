@@ -23,6 +23,8 @@ class Item extends CommonItem
     protected $backBorderColor = null;
     protected $colorsSchemeSource = 'default'; // default|random|item
     protected $limitPerContainer = null;
+    protected $group = null;
+    protected $separate = false;
 
     public function getWeight() {
         return $this->weight;
@@ -45,6 +47,24 @@ class Item extends CommonItem
         $this->limitPerContainer = $limitPerContainer;
         return $this;
     }
+    
+    public function getGroup() {
+        return $this->group;
+    }
+
+    public function getSeparate() {
+        return $this->separate;
+    }
+
+    public function setGroup($group) {
+        $this->group = $group;
+        return $this;
+    }
+
+    public function setSeparate($separate) {
+        $this->separate = $separate;
+        return $this;
+    }
 
     public function getAsArray(){
         $data = [];
@@ -56,6 +76,8 @@ class Item extends CommonItem
         $data['q']  = $this->quantity;
         $data['vr'] = $this->verticalRotation;
         $data['limit_per_bin'] = $this->limitPerContainer;
+        $data['separate'] = $this->separate;
+        $data['group'] = $this->group;
         return $data;
     }
 }
