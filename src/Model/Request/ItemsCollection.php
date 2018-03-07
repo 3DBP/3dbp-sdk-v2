@@ -68,7 +68,7 @@ class ItemsCollection
                     $itemObj->setSeparate($item['separate']);
                 }
                 if(isset($item['group'])){
-                    $itemObj->setLimitPerContainer($item['group']);
+                    $itemObj->setGroup($item['group']);
                 }
                 if(isset($item['id'])){
                     $itemObj->setId($item['id']);
