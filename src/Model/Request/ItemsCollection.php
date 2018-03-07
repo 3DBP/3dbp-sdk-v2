@@ -64,6 +64,12 @@ class ItemsCollection
                 if(isset($item['vertical_rotation'])){
                     $itemObj->setVerticalRotation($item['vertical_rotation']);
                 }
+                if(isset($item['separate'])){
+                    $itemObj->setSeparate($item['separate']);
+                }
+                if(isset($item['group'])){
+                    $itemObj->setLimitPerContainer($item['group']);
+                }
                 if(isset($item['id'])){
                     $itemObj->setId($item['id']);
                 }
