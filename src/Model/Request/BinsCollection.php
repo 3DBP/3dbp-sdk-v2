@@ -63,6 +63,9 @@ class BinsCollection
                 if(isset($bin['quantity'])){
                     $binObj->setQuantity($bin['quantity']);
                 }
+                if(isset($bin['cost'])){
+                    $binObj->setCost($bin['cost']);
+                }
                 $this->addBin($binObj);
             }
         }
