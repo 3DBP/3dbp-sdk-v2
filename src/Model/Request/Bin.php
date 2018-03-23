@@ -17,7 +17,7 @@ class Bin extends CommonBin
     protected $maxWeight;
     protected $weight = 0;
     protected $quantity = null;
-
+    protected $cost = 0;
 
     public function getMaxWeight() {
         return $this->maxWeight;
@@ -45,6 +45,15 @@ class Bin extends CommonBin
         $this->quantity = (int)$quantity;
         return $this;
     }
+    
+    public function getCost() {
+        return $this->cost;
+    }
+
+    public function setCost($cost) {
+        $this->cost = $cost;
+        return $this;
+    }
 
     public function getAsArray(){
         $data = [];
@@ -55,6 +64,7 @@ class Bin extends CommonBin
         $data['q'] = $this->quantity; 
         $data['max_wg'] = $this->maxWeight;
         $data['weight'] = $this->weight;
+        $data['cost'] = $this->cost;
         return $data;
     }
 
