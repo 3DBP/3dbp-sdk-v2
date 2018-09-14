@@ -33,6 +33,7 @@ class Parameters
     const PARAM_STATS                             = "stats";
     const PARAM_ITEM_COORDINATES                  = "item_coordinates";
     const PARAM_SAVE_RESPONSE                     = "save_response";
+    const PARAM_OPTIMIZATION_MODE                 = "optimization_mode";
     
     protected $parameters = [];
     protected static $parametersList;
@@ -253,6 +254,10 @@ class Parameters
         return $this;
     }
     
+    public function setOptimizationMode($optimizationMode){
+        $this->parameters[self::PARAM_OPTIMIZATION_MODE] = $optimizationMode;
+    }
+
     public function getAsArray(){
         $data = [];
         foreach($this->parameters as $key=>$value){
@@ -260,4 +265,5 @@ class Parameters
         }
         return $data;
     }
+    
 }

@@ -26,7 +26,7 @@ class Client
     }
 
     public function getRequestUrl($https = true) {
-        $protocol = ($https)?'https://':'http//';
+        $protocol = ($https)?'https://':'http://';
         return $protocol.$this->location.'/packer/'.$this->algorithmName;
     }
  

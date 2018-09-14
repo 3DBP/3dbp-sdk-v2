@@ -51,6 +51,9 @@ class BinsCollection
                 if(isset($bin['max_weight'])){
                     $binObj->setMaxWeight($bin['max_weight']);
                 }
+                if(isset($bin['weight'])){
+                    $binObj->setWeight($bin['weight']);
+                }
                 if(isset($bin['id'])){
                     $binObj->setId($bin['id']);    
                 }
@@ -60,8 +63,20 @@ class BinsCollection
                 if(isset($bin['quantity'])){
                     $binObj->setQuantity($bin['quantity']);
                 }
+                if(isset($bin['cost'])){
+                    $binObj->setCost($bin['cost']);
+                }
                 $this->addBin($binObj);
             }
         }
+    }
+    
+    public function getById($id){
+        foreach($this->bins as $bin){
+            if($id == $bin->getId()){
+                return $bin;
+            }
+        }
+        return false;
     }
 }
