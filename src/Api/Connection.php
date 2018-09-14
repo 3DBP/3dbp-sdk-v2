@@ -24,7 +24,7 @@ class Connection
     }
 
     public function sendRequest(RequestData $requestData){
-        $url_query = 'query='.json_encode($requestData->getAsArray());
+        $url_query = 'query='.json_encode($requestData->getAsArray(), JSON_HEX_AMP);
         $ch = curl_init($this->client->getRequestUrl());
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $url_query);
