@@ -93,12 +93,13 @@ class PackingResponseMapper
                 $packedBin->setId($packedBinArray['bin_data']['id']);
                 $packedBin->setUsedSpace($packedBinArray['bin_data']['used_space']);
                 $packedBin->setUsedWeight($packedBinArray['bin_data']['used_weight']);
-                if($requestBin){
+                if(isset($packedBinArray['bin_data']['gross_weight'])){
+                    $packedBin->setGrossWeight($packedBinArray['bin_data']['gross_weight']);
+                }elseif($requestBin){
                     $packedBin->setGrossWeight($packedBin->getWeight()+$requestBin->getWeight());
                 }else{
                     $packedBin->setGrossWeight(0);
                 }
-                
                 if(isset($packedBinArray['image_complete'])){
                     $packedBin->setCompleteImage($packedBinArray['image_complete']);
                 }
