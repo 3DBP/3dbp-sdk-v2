@@ -63,7 +63,7 @@ class Bin extends CommonBin
         $data['d'] = $this->depth;
         $data['q'] = $this->quantity; 
         $data['max_wg'] = $this->maxWeight;
-        $data['weight'] = $this->weight;
+        $data['wg'] = $this->weight;
         $data['cost'] = $this->cost;
         return $data;
     }
