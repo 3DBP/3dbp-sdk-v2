@@ -20,7 +20,7 @@ class ParameterImageFormat
     
     public function __construct($format) {
         if($this->checkFormat($format)){
-            $this->source = $format;
+            $this->format = $format;
         }
     }
     
